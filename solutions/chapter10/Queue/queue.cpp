@@ -4,8 +4,7 @@
 
 using namespace std;
 
-class Queue
-{
+class Queue {
 public:
   Queue();
   ~Queue();
