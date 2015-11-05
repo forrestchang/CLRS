@@ -1,37 +1,79 @@
-#include "queue.h"
+#include <iostream>
 
-Queue::Queue(int size) {
-  this->head = 0;
-  this->tail = 1;
-  this->size = size;
-  this->items = new int[size];
+#define SIZE 12
+
+using namespace std;
+
+class Queue
+{
+public:
+  Queue();
+  ~Queue();
+  bool isEmpty();
+  bool isFull();
+  void enqueue(int);
+  int dequeue();
+  void print();
+
+private:
+  int Q[SIZE];
+  int head;
+  int tail;
+};
+
+Queue::Queue() {
+  head = 0;
+  tail = 0;
 }
 
-Queue::~Queue() {
-  delete[] items;
-}
+Queue::~Queue(){}
 
 bool Queue::isEmpty() {
   return (head == tail);
 }
 
 bool Queue::isFull() {
-  return (tail == size);
+  return (tail == SIZE);
 }
 
 void Queue::enqueue(int value) {
   if (isFull()) {
-    throw "Overflow";
+    throw "The queue is full";
   } else {
-    items[tail++] = value;
+    Q[tail++] = value;
   }
 }
 
 int Queue::dequeue() {
   if (isEmpty()) {
-    throw "Underflow";
+    throw "The queue is empty";
   } else {
-    return items[head++];
+    head++;
+    return Q[head - 1];
   }
 }
 
+void Queue::print() {
+  if (!isEmpty()) {
+    for (int i = head; i < tail; i++) {
+      cout << Q[i] << " ";
+    }
+    cout << endl;
+  }
+}
+
+int main(void) {
+  Queue Q;
+  Q.enqueue(1);
+  Q.print();
+  Q.enqueue(3);
+  Q.print();
+  Q.enqueue(10);
+  Q.print();
+  Q.enqueue(5);
+  Q.print();
+  Q.dequeue();
+  Q.print();
+
+  return 0;
+}
