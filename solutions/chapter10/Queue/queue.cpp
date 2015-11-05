@@ -1,6 +1,6 @@
 #include <iostream>
 
-#define SIZE 12
+#define SIZE 100
 
 using namespace std;
 
@@ -73,6 +73,7 @@ int main(void) {
   Q.enqueue(5);
   Q.print();
   Q.dequeue();
+  Q.enqueue(12);
   Q.print();
 
   return 0;
